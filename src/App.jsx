@@ -1,11 +1,9 @@
-import { useState } from 'react'
 import './App.css'
 import Code from './components/Code'
 import Gennerator from './components/Gennerator'
 import Layer from './components/Layer'
 import Preview from './components/Preview'
 import Template from './components/Template'
-import Input from './ui/Input'
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.querySelectorAll('input')
   const span =document.querySelectorAll('span')

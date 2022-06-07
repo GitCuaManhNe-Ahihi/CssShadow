@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../context/AppProvider'
-import Input from '../ui/input'
+import InputValue from '../ui/InputValue'
 import classes from './Gennerator.module.css'
 export default function Gennerator() {
     const { state,dispatch} = useContext(AppContext)
@@ -11,14 +11,14 @@ export default function Gennerator() {
                 <p>
                     shift right
                 </p>
-                <Input type="range" value={state.css?.right} onChange={(e) => dispatch({ type: 'change', payload:{ right: e.target.value }})}
+                <InputValue type="range" value={state.css?.right} onChange={(e) => dispatch({ type: 'change', payload:{ right: e.target.value }})}
                  min={-50} max={50} step={1} />
             </div>
             <div className="row">
                 <p>
                     shift down
                 </p>
-                <Input type="range" value={state.css?.down} onChange={(e) => dispatch(
+                <InputValue type="range" value={state.css?.down} onChange={(e) => dispatch(
                     {  type: 'change', payload:{down: e.target.value }}
                 )} min={-50} max={50} step={1} />
             </div>
@@ -26,7 +26,7 @@ export default function Gennerator() {
                 <p>
                     Spread
                 </p>
-                <Input type="range" value={state.css?.spread} onChange={(e) => dispatch(
+                <InputValue type="range" value={state.css?.spread} onChange={(e) => dispatch(
                     { type: 'change', payload: {spread:e.target.value }}
                 )} min={0} max={100} step={1} />
             </div>
@@ -34,7 +34,7 @@ export default function Gennerator() {
                 <p>
                     Blur
                 </p>
-                <Input type="range" value={state.css?.blur} onChange={(e) => dispatch(
+                <InputValue type="range" value={state.css?.blur} onChange={(e) => dispatch(
                     { type: 'change', payload: {blur: e.target.value }}
                 )} min={0} max={100} step={1} />
             </div>
@@ -42,12 +42,12 @@ export default function Gennerator() {
                 <p>
                     Opacity
                 </p>
-                <Input type="range"  typeopacity={1} value={state.css?.opacity} onChange={(e) => dispatch(
+                <InputValue type="range"  typeopacity={1} value={state.css?.opacity} onChange={(e) => dispatch(
                     { type: 'change', payload: {opacity: (e.target.value)}}
                 )} min={0} max={100} step={10} />
             </div>
             <div className="row insert">
-                <Input type="checkbox" value={state.css?.insert} onClick={() => dispatch(
+                <InputValue type="checkbox" value={state.css?.insert} onClick={() => dispatch(
                     { type: 'change', payload: {insert: !state.css?.insert}}
                 )}/>
                 <p>
@@ -55,7 +55,7 @@ export default function Gennerator() {
                 </p>
             </div>
             <div className="row">
-                <Input type="color" value={state.css?.color} onChange={(e) => dispatch(
+                <InputValue type="color" value={state.css?.color} onChange={(e) => dispatch(
                     { type: 'change', payload: {color: (e.target.value)}}
                 )}/>
 

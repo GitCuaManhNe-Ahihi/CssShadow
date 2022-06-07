@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './Input.module.css'
 
 
-export default function Input(props) {
+export default function InputValue(props) {
     const blur = props.typeopacity ? 100 : 1
     
     

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { AppContext } from '../context/AppProvider'
-import Input from '../ui/input'
+import InputValue from '../ui/InputValue'
 
 export default function Preview() {
   const { state } = useContext(AppContext)
@@ -15,8 +15,8 @@ export default function Preview() {
 
   return (
     <div style={{ width: '450px', height: '400px', background: underground , margin:'10px 20px'}}>
-      <Input type="color" value={underground} onChange={(e) => setUnderground(e.target.value)} />
-      <Input type="color" value={background} onChange={(e) => setBackground(e.target.value)} />
+      <InputValue type="color" value={underground} onChange={(e) => setUnderground(e.target.value)} />
+      <InputValue type="color" value={background} onChange={(e) => setBackground(e.target.value)} />
 
       {state.layer === 1 ? <div className='shape' style={{ width: '200px', height: '200px', background: background,margin:'40px'}}>
         <div style={{ width: '200px', height: '200px', boxShadow:shadow.slice(0, -3)}}></div>
