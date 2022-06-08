@@ -1,0 +1,27 @@
+  // useEffect(() => {
+  //     const container = document.querySelector('#containlayer')
+  //     var layers = document.querySelectorAll('.layer')
+  //     var drag;
+  //     for (let i = 0; i < layers.length; i++) {
+  //      layers[i].addEventListener('dragstart', (e) => {
+  //         drag = layers[i]
+  //       })
+  //      layers[i].addEventListener('dragover', (e) => {
+  //         const postion = drag.getBoundingClientRect().y
+  //         if (e.clientY > postion) {
+  //           container.insertBefore(drag, layers[i].nextSibling)
+  //         }
+  //         if (e.clientY < postion) {
+  //          container.insertBefore(drag, layers[i].previousElementSibling)
+            
+  //         }
+  //       })
+  //       layers[i].addEventListener('dragend', (e) => {
+  //         e.stopPropagation()
+  //         let arr1=[]
+  //         document.querySelector('#containlayer').childNodes.forEach((item) => {arr1.push(JSON.parse(item.attributes[0].nodeValue))})
+  //         dispatch({ type: 'move', payload: arr1 })
+  //       })
+
+  //     }
+  // })

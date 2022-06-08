@@ -55,7 +55,7 @@ const initialState = {
     insert: false,
     color: '#e1eeff',
   }
-],
+  ],
   arr2: [
     {
       right: 10,
@@ -91,21 +91,21 @@ const initialState = {
       blur: 3,
       opacity: 70,
       insert: false,
-      color: '#e90d0d',
+      color: '#a84242',
     }
-  ],id:0,
-  layer:1,
+  ], id: 0,
+  layer: 1,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case 'change':
-      const cssnew ={...state.css,...action.payload};
-      const arr1new = state.layer === 1 ? state.arr1.map((item,index)=>index === state.id?cssnew:item): state.arr1;
-      const arr2new = state.layer === 2 ? state.arr2.map((item,index)=>index === state.id?cssnew:item) : state.arr2;
-      return { ...state, css:cssnew,arr1:arr1new,arr2:arr2new }
+      const cssnew = { ...state.css, ...action.payload };
+      const arr1new = state.layer === 1 ? state.arr1.map((item, index) => index === state.id ? cssnew : item) : state.arr1;
+      const arr2new = state.layer === 2 ? state.arr2.map((item, index) => index === state.id ? cssnew : item) : state.arr2;
+      return { ...state, css: cssnew, arr1: arr1new, arr2: arr2new }
     case 'add':
-      const arr1ne = state.layer === 1 ? [...state.arr1,{
+      const arr1ne = state.layer === 1 ? [...state.arr1, {
         right: 0,
         down: 0,
         spread: 4,
@@ -113,8 +113,8 @@ function reducer(state, action) {
         opacity: 20,
         insert: false,
         color: '#000000',
-      }]: state.arr1;
-      const arr2ne = state.layer !== 1 ? [...state.arr2,{
+      }] : state.arr1;
+      const arr2ne = state.layer !== 1 ? [...state.arr2, {
         right: 0,
         down: 0,
         spread: 4,
@@ -122,42 +122,49 @@ function reducer(state, action) {
         opacity: 70,
         insert: false,
         color: '#000000',
-      }]: state.arr2;
-      return { ...state, arr1:arr1ne,arr2:arr2ne,id:(state.layer === 1 ? state.arr1.length : state.arr2.length)-1};
+      }] : state.arr2;
+      return { ...state, arr1: arr1ne, arr2: arr2ne, id: (state.layer === 1 ? state.arr1.length : state.arr2.length) - 1 };
     case 'remove':
-      if(state.arr1.length > 1 && state.arr2.length > 1){
-      const arr1ne1 = state.layer === 1 ? state.arr1.filter((item,index)=>index !== state.id): state.arr1;
-      const arr2ne1 = state.layer === 2 ? state.arr2.filter((item,index)=>index !== state.id): state.arr2;
-      var count;
-      if(state.layer === 1){
-        count = arr1ne1.length >1 ? state.id : 0;
-      }
-      else{
-        count = arr1ne1.length >1 ? state.id : 0;
-      }
+      if (state.arr1.length > 1 && state.arr2.length > 1) {
+        const arr1ne1 = state.layer === 1 ? state.arr1.filter((item, index) => index !== state.id) : state.arr1;
+        const arr2ne1 = state.layer === 2 ? state.arr2.filter((item, index) => index !== state.id) : state.arr2;
+        var count;
+        if (state.layer === 1) {
+          count = arr1ne1.length > 1 ? state.id : 0;
+        }
+        else {
+          count = arr1ne1.length > 1 ? state.id : 0;
+        }
 
-      return { ...state, arr1:arr1ne1,arr2:arr2ne1,id:count,css:(state.layer === 1 ? arr1ne1[count] : arr2ne1[count])};
-    }
-    else{
-      return { ...state}
+        return { ...state, arr1: arr1ne1, arr2: arr2ne1, id: count, css: (state.layer === 1 ? arr1ne1[count] : arr2ne1[count]) };
+      }
+      else {
+        return { ...state }
       }
     case 'changeLayer':
       const layercss = action.payload === 1 ? state.arr1[0] : state.arr2[0];
-      return { ...state, layer:action.payload,css:layercss,id:0};
+      return { ...state, layer: action.payload, css: layercss, id: 0 };
     case 'changeId':
-      const idcss = action.payload === 1 ? state.arr1[action.payload] : state.arr2[action.payload];
-      return { ...state, id:action.payload,css:idcss};
+      const idcss = state.layer === 1 ? state.arr1[action.payload] : state.arr2[action.payload];
+      return { ...state, id: action.payload, css: idcss };
+    case 'move':
+      // const arr1ne2 = document.querySelectorAll('.layer')?.map((item)=>JSON.parse(item.getAttribute('data')));
+      
+      if (state.layer === 1) {
+        return { ...state,arr1: [...action.payload] };
+      }
+      else {
+        return { ...state,arr2: [...action.payload] };
+      }
     default:
       throw new Error();
-  
+
   }
 }
 export default function AppProvider({ children }) {
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  
-
   return (
-    <AppContext.Provider value={{ state,dispatch}}>
+    <AppContext.Provider value={{ state, dispatch }}>
       {
         children
       }

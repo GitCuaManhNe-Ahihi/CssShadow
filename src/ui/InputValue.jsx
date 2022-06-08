@@ -15,6 +15,6 @@ export default function InputValue(props) {
                 <input value={props.value} className={classes.slider} {...props} />
             </div>
             :
-            <input className={props.type == 'checkbox' ? classes.checkbox : classes.color} {...props} />}</>
+            <input className={props.type == 'checkbox' ? classes.checkbox : classes.color} value={props.value} {...props} />}</>
     )
 }
