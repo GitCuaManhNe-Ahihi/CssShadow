@@ -149,12 +149,12 @@ function reducer(state, action) {
       return { ...state, id: action.payload, css: idcss };
     case 'move':
       // const arr1ne2 = document.querySelectorAll('.layer')?.map((item)=>JSON.parse(item.getAttribute('data')));
-      
+      const icss =  action.payload.arr[action.payload.id]
       if (state.layer === 1) {
-        return { ...state,arr1: [...action.payload] };
+        return { ...state,arr1: [...action.payload.arr],css:icss,id:action.payload.id };
       }
       else {
-        return { ...state,arr2: [...action.payload] };
+        return { ...state,arr2: [...action.payload.arr],css:icss,id:action.payload.id };
       }
     default:
       throw new Error();
